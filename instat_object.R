@@ -109,7 +109,7 @@ instat_obj$methods(append_data_objects = function(name, obj) {
 instat_obj$methods(get_data_list = function() { 
   retlist <- list()
   for ( i in (1:length(data_objects)) ) {
-    retlist[[i]] = data_objects[[i]]$get_data()
+    retlist[[names(data_objects)[[i]]]] = data_objects[[i]]$get_data()
   }
   return(retlist)
   } 
@@ -118,7 +118,7 @@ instat_obj$methods(get_data_list = function() {
 instat_obj$methods(get_variable_info = function() { 
   retlist <- list()
   for ( i in (1:length(data_objects)) ) {
-    retlist[[i]] = data_objects[[i]]$get_variable_metadata()
+    retlist[[names(data_objects)[[i]]]] = data_objects[[i]]$get_variable_metadata()
   }
   return(retlist)
 } 
@@ -129,7 +129,7 @@ instat_obj$methods(get_meta_data = function() {
   for ( i in (1:length(data_objects)) ) {
     templist=data_objects[[i]]$get_meta_data()
     for ( j in (1:length(templist)) ) {
-      retlist[i,names(templist[j])] =templist[[j]]         
+      retlist[names(data_objects)[[i]],names(templist[j])] =templist[[j]]         
     }
   }
   return(retlist)
